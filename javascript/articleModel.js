@@ -4,7 +4,7 @@ function ArticleModel() {
 
 ArticleModel.prototype.allHeadlines = function (cb) {
     var self = this;
-    $.get('http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/search?from-date=' + this._today, function (data) {
+    $.get('https://content.guardianapis.com/search?show-fields=all&show-elements&api-key=25ceccca-b9bf-4f41-b703-b64ec781dfd2', function (data) {
         cb(self._getHeadlines(data));
     })
 }
@@ -15,7 +15,8 @@ ArticleModel.prototype._getHeadlines = function (data) {
             title: article.webTitle,
             id: article.id,
             url: article.webUrl,
-            image: article.fields.thumbnail
+            image: article.fields.thumbnail,
+            text: article.fields.bodyText
         }
     })
 }
