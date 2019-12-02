@@ -4,7 +4,7 @@ function ArticleModel() {
 
 ArticleModel.prototype.allHeadlines = function (cb) {
     var self = this;
-    $.get('https://content.guardianapis.com/search?q=debate%20AND%20economy&tag=politics/politics&from-date=' + this._today + '&api-key=test', function (data) {
+    $.get('http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/search?from-date=' + this._today, function (data) {
         cb(self._getHeadlines(data));
     })
 }
@@ -14,7 +14,8 @@ ArticleModel.prototype._getHeadlines = function (data) {
         return {
             title: article.webTitle,
             id: article.id,
-            url: article.apiUrl
+            url: article.webUrl,
+            image: article.fields.thumbnail
         }
     })
 }

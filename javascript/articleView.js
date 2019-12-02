@@ -10,6 +10,7 @@
 
   ArticleView.prototype._renderTitles = function (articles) {
       return articles.map(function (article) {
-          return '<li>' + article.title + '</li>'
+          return '<li>' + '<a href=' + article.url + '>' + article.title + '</a>' + '</li>' +
+              '<img src=' + article.image '>'
       }).join('')
   }
